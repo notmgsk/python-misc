@@ -29,14 +29,14 @@ class Vector:
 
     def add(self, v):
         if type(v) is Vector:
-            self.coords = list(map(op.add, self.coords, v.coords))
+            self.coords = [a + b for (a, b) in zip(self.coords, v.coords)]
         else:
             self.coords = [c + v for c in self.coords]
         return self
             
     def __add__(self, v):
         if type(v) is Vector:
-            return Vector(*list(map(op.add, self.coords, v.coords)))
+            return Vector(*[a + b for (a, b) in zip(self.coords, v.coords)])
         else:
             return Vector(*[c + v for c in self.coords])
 
@@ -48,14 +48,14 @@ class Vector:
 
     def sub(self, v):
         if type(v) is Vector:
-            self.coords = list(map(op.sub, self.coords, v.coords))
+            self.coords = [a - b for (a, b) in zip(self.coords, v.coords)]
         else:
             self.coords = [c - v for c in self.coords]
         return self
             
     def __sub__(self, v):
         if type(v) is Vector:
-            return Vector(*list(map(op.sub, self.coords, v.coords)))
+            return Vector(*[a - b for (a, b) in zip(self.coords, v.coords)])
         else:
             return Vector(*[c - v for c in self.coords])
 
@@ -68,18 +68,18 @@ class Vector:
     def __neg__(self):
         return self * (-1)
 
-    def mult(self, b):
-        if type(b) is Vector:
-            self.coords = list(map(op.mul, self.coords, b.coords))
+    def mult(self, v):
+        if type(v) is Vector:
+            self.coords = [a * b for (a, b) in zip(self.coords, v.coords)]
         else:
-            self.coords = [c * b for c in self.coords]
+            self.coords = [c * v for c in self.coords]
         return self
 
-    def __mul__(self, b):
-        if type(b) is Vector:
-            return Vector(*list(map(op.mul, self.coords, b.coords)))
+    def __mul__(self, v):
+        if type(v) is Vector:
+            return Vector(*[a * b for (a, b) in zip(self.coords, v.coords)])
         else:
-            return Vector(*[c * b for c in self.coords])
+            return Vector(*[c * v for c in self.coords])
 
     def __imul__(self, b):
         return self.mult(b)
