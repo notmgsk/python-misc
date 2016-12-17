@@ -87,6 +87,15 @@ class Vector:
     def __rmul__(self, b):
         return self * b
 
+    def div(self, b):
+        self.coords = [c/b for c in self.coords]
+        return self
+
+    def __truediv__(self, b):
+        return Vector(*self.coords).div(b)
+
+    def dot(self, v):
+        return sum([a * b for (a, b) in zip(self.coords, v.coords)])
+
     def __eq__(self, other):
         return self.coords == other.coords
-
